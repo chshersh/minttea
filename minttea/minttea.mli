@@ -46,5 +46,15 @@ val app :
   unit ->
   'model App.t
 
+(** Configuration for a TUI app. Use {!make_config} to create a configuration value. *)
+type config
+
+(** Create a configuration to be used by {!start}. Default configuration parameters are:
+
+  - [fps]: 60
+
+*)
+val make_config: ?fps:int -> unit -> config
+
 val run : ?fps:int -> initial_model:'model -> 'model App.t -> unit
-val start : 'model App.t -> initial_model:'model -> unit
+val start : ?config:config -> 'model App.t -> initial_model:'model -> unit
